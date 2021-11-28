@@ -1,5 +1,6 @@
 import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
+import dayjs from 'dayjs';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
@@ -10,7 +11,7 @@ export default function Training(props) {
 
     const columns = [
         {field:'activity', sortable: true, filter: true},
-        {field:'date', sortable: true, filter: true},
+        {field: 'date', sortable: true, filter: true, valueFormatter: params => dayjs(params.value).format('DD.MM.YYYY')},
         {field:'duration', sortable: true, filter: true},
     ]
 
