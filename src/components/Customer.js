@@ -30,7 +30,7 @@ export default function Customer(props) {
         {field:'postcode', sortable: true, filter: true},
         {field:'email', sortable: true, filter: true},
         {field:'city', sortable: true, filter: true},
-        {cellRendererFramework: params => <TrainingToCustomer currCustomer={params.data} url={props.url} trainings={trainings}/>},
+        {cellRendererFramework: params => <TrainingToCustomer currCustomer={params.data} url={props.url} trainings={trainings} getTrainings={getTrainings}/>},
         {cellRendererFramework: params => <EditCustomer customer={params.data} getCustomers={props.getCustomers}/> },
         {cellRendererFramework: params => <Button onClick={() => deleteCustomer(params.data)} color="error"><DeleteIcon /></Button>}
     ]
@@ -55,7 +55,7 @@ export default function Customer(props) {
     return(
 
         <div className="ag-theme-alpine" style={{height:600, padding:50,margin:'auto' }}>
-            <Button variant="contained"  onClick={() => setOpenAdd(true)} style={{marginBottom:10}}>Add a Customer</Button>
+            <Button variant="contained" onClick={() => setOpenAdd(true)} style={{marginBottom:10}}>Add a Customer</Button>
         
             <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
             <DialogContent>

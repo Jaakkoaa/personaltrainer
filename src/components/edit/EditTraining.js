@@ -50,7 +50,6 @@ return(
         value={training.date}
         type="datetime-local"
         onChange={inputChanged}
-        label="date"
         fullWidth
       />
           <TextField
@@ -63,7 +62,7 @@ return(
       />
 
 
-    <Button style={{marginBottom:30}} onClick={putTraining}>Edit</Button>
+    <Button variant="contained" style={{marginBottom:30, marginTop:10}} onClick={putTraining}>Edit</Button>
     </DialogContent>
     </Dialog>
     </>

@@ -12,6 +12,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import dayjs from 'dayjs';
 import axios from 'axios';
+import { ContactMail } from '@mui/icons-material';
 
 export default function TrainingToCustomer(props) {
 
@@ -23,10 +24,47 @@ export default function TrainingToCustomer(props) {
         {field: 'date', sortable: true, filter: true, valueFormatter: params => dayjs(params.value).format('DD.MM.YYYY')},
         {field:'duration', sortable: true, filter: true},
         {cellRendererFramework: params => params.data.customer===null ?
-        <Button onClick={() => console.log('lisäys')} color="success"><AddCircleIcon/></Button> :
-        <Button color="error" onClick={() => console.log('poisto')}><RemoveCircleIcon/></Button>}
+        <Button onClick={() => trainFromCust(params.data)} color="success"><AddCircleIcon/></Button> :
+        <Button color="error" onClick={() => trainToCust(params.data)}><RemoveCircleIcon/></Button>}
     ]
 
+    const trainToCust = (training) => {
+        console.log(props.currCustomer)
+        const puttable = {
+            id: training.id,
+            date: training.date,
+            activity: training.activity,
+            duration: training.duration,
+            customer: props.currCustomer.links[0].href
+        }
+
+        console.log(`${props.url}api/trainings`);
+        axios.post(`${props.url}api/trainings`, puttable)
+        .then(res => {
+            console.log(res.data)
+            props.getTrainings();
+        })
+        .catch(err => console.error(err))
+    }
+
+    const trainFromCust = (training) => {
+        console.log(props.currCustomer)
+        const puttable = {
+            id: training.id,
+            date: training.date,
+            activity: training.activity,
+            duration: training.duration,
+            customer: null
+        }
+
+        console.log(`${props.url}api/trainings`);
+        axios.put(`${props.url}api/trainings/${props.currCustomer.id}`, puttable)
+        .then(res => {
+            console.log(res.data)
+            props.getTrainings();
+        })
+        .catch(err => console.error(err))
+    }
 
     const DialogOpened = () => {        
         console.log(props.currCustomer);

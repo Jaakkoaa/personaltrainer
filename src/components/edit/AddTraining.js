@@ -60,7 +60,7 @@ return(
       />
 
 
-    <Button style={{marginBottom:30}} onClick={postTraining}>Create</Button>
+    <Button variant="contained" style={{marginBottom:30, marginTop:10}} onClick={postTraining}>Create</Button>
     </DialogContent>
     </Dialog>
     </>

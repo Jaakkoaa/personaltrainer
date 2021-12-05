@@ -88,7 +88,7 @@ return(
         fullWidth
       />
 
-    <Button style={{marginBottom:30}} onClick={putCustomer}>Edit</Button>
+    <Button variant="contained" style={{marginBottom:30, marginTop:10}} onClick={putCustomer}>Edit</Button>
     </DialogContent>
     </Dialog>
     </>

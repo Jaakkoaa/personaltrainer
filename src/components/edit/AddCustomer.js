@@ -81,7 +81,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
 
-        <Button style={{marginBottom:30}} onClick={postCustomer}>Add</Button>
+        <Button variant="contained" style={{marginBottom:30, marginTop:10}} onClick={postCustomer}>Add</Button>
         </>
     )
 }
