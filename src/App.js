@@ -36,8 +36,8 @@ function App() {
           <Button color="inherit" onClick={() => setButtonIndex(2)}> Customers </Button>
         </Toolbar>
       </AppBar>
-      {buttonIndex===1 && <Training getTrainings={getTrainings} trainings={trainings} customers={customers}/>}
-      {buttonIndex===2 && <Customer getCustomers={getCustomers} customers={customers} />}
+      {buttonIndex===1 && <Training getTrainings={getTrainings} trainings={trainings} />}
+      {buttonIndex===2 && <Customer getCustomers={getCustomers} getTrainings={getTrainings} customers={customers} trainings={trainings} />}
     </div>
   );
 }

@@ -8,11 +8,14 @@ import EditCustomer from './edit/EditCustomer';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import axios from 'axios';
+import TrainingToCustomer from './edit/TrainingtoCustomer';
+
 
 
 export default function Customer(props) {
 
-    const [open, setOpen] = React.useState(false);
+    const [openAdd, setOpenAdd] = React.useState(false);
+    const [openTrain, setOpenTrain] = React.useState(false);
 
     React.useEffect(() => console.log(props.customers),[props.customers]);
     React.useEffect(() => props.getCustomers(),[]);
@@ -25,7 +28,8 @@ export default function Customer(props) {
         {field:'email', sortable: true, filter: true},
         {field:'city', sortable: true, filter: true},
         {cellRendererFramework: params => <EditCustomer customer={params.data} getCustomers={props.getCustomers}/> },
-        {cellRendererFramework: params => <Button onClick={() => deleteCustomer(params.data)}>Delete</Button>}
+        {cellRendererFramework: params => <Button onClick={() => deleteCustomer(params.data)}>Delete</Button>},
+        {cellRendererFramework: () => <Button onClick={() => setOpenTrain(true)}>trainings</Button>}
     ]
 
     const deleteCustomer = (customer) => {
@@ -40,11 +44,17 @@ export default function Customer(props) {
     return(
 
         <div className="ag-theme-alpine" style={{height:400,width:'60%', padding:50,margin:'auto' }}>
-            <Button variant="contained"  onClick={() => setOpen(true)} style={{marginBottom:10}}>Add a Customer</Button>
+            <Button variant="contained"  onClick={() => setOpenAdd(true)} style={{marginBottom:10}}>Add a Customer</Button>
         
-            <Dialog open={open} onClose={() => setOpen(false)}>
+            <Dialog open={openAdd} onClose={() => setOpenAdd(false)}>
             <DialogContent>
-                <AddCustomer getCustomers={props.getCustomers} setOpen={setOpen}/>
+                <AddCustomer getCustomers={props.getCustomers} setOpen={setOpenAdd}/>
+            </DialogContent>
+            </Dialog>
+
+            <Dialog open={openTrain} onClose={() => setOpenTrain(false)}>
+            <DialogContent>
+            <TrainingToCustomer getTrainings={props.getTrainings} trainings={props.trainings}/>
             </DialogContent>
             </Dialog>
 

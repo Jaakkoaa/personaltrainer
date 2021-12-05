@@ -32,7 +32,7 @@ export default function Training(props) {
     ]
 
     return(
-        <div className="ag-theme-alpine" style={{height:400,width:'60%', padding:50,margin:'auto' }}>
+        <div className="ag-theme-alpine" style={{height:400,width:'55%', padding:50,margin:'auto' }}>
         <AddTraining getTrainings={props.getTrainings}/>
             <AgGridReact
             rowData={props.trainings}
