@@ -12,7 +12,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import dayjs from 'dayjs';
 import axios from 'axios';
-import { ContactMail } from '@mui/icons-material';
+
 
 export default function TrainingToCustomer(props) {
 
@@ -24,8 +24,8 @@ export default function TrainingToCustomer(props) {
         {field: 'date', sortable: true, filter: true, valueFormatter: params => dayjs(params.value).format('DD.MM.YYYY')},
         {field:'duration', sortable: true, filter: true},
         {cellRendererFramework: params => params.data.customer===null ?
-        <Button onClick={() => trainFromCust(params.data)} color="success"><AddCircleIcon/></Button> :
-        <Button color="error" onClick={() => trainToCust(params.data)}><RemoveCircleIcon/></Button>}
+        <Button onClick={() => trainToCust(params.data)} color="success"><AddCircleIcon/></Button> :
+        <Button color="error" onClick={() => trainFromCust(params.data)}><RemoveCircleIcon/></Button>}
     ]
 
     const trainToCust = (training) => {
@@ -48,17 +48,8 @@ export default function TrainingToCustomer(props) {
     }
 
     const trainFromCust = (training) => {
-        console.log(props.currCustomer)
-        const puttable = {
-            id: training.id,
-            date: training.date,
-            activity: training.activity,
-            duration: training.duration,
-            customer: null
-        }
 
-        console.log(`${props.url}api/trainings`);
-        axios.put(`${props.url}api/trainings/${props.currCustomer.id}`, puttable)
+        axios.delete(`${props.url}api/trainings/${training.id}/customer`)
         .then(res => {
             console.log(res.data)
             props.getTrainings();
