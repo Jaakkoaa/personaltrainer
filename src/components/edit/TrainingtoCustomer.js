@@ -4,7 +4,7 @@ import { Dialog, DialogContent, Button } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import RunCircleIcon from '@mui/icons-material/RunCircle';
+import SkateboardingIcon from '@mui/icons-material/Skateboarding';
 import { Paper } from '@mui/material';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -68,6 +68,8 @@ export default function TrainingToCustomer(props) {
         setOpen(false);
     }
 
+    //asiakkaalle annetaan vapaat treenit ja omat treenit samaan arrayhin,
+    //hieman ns. "amispatentti" funktiossa linkkien kanssa rivillä 79    
     const findOpenTrainings = () => {
         console.log('finding open trainings')
         for (let i = 0; i < props.trainings.length; i++) {
@@ -84,7 +86,7 @@ export default function TrainingToCustomer(props) {
 
     return(
         <div >
-        <Button color="success" variant="contained" endIcon={<RunCircleIcon/>} onClick={DialogOpened}>trainings</Button>
+        <Button color="success" variant="contained" endIcon={<SkateboardingIcon/>} onClick={DialogOpened}>trainings</Button>
         <Dialog open={open} onClose={DialogClosed} maxWidth={'xl'}>
             <Paper style={{margin:'auto' ,padding:20}}>
             <DialogContent >
