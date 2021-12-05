@@ -10,20 +10,22 @@ import { Button } from '@mui/material';
 
 function App() {
   
-  const url = 'https://customerrest.herokuapp.com/api';
+  const url = 'https://customerrest.herokuapp.com/';
   
   const [customers, setCustomer] = React.useState([]);
   const [trainings, setTrainings] = React.useState([]);
   const [buttonIndex, setButtonIndex] = React.useState(1);
 
   const getTrainings = () => {
-    axios.get(`${url}/trainings`)
-    .then(res => setTrainings(res.data.content))
+    axios.get(`${url}/api/trainings`)
+    .then(res =>{
+      setTrainings(res.data.content);
+      console.log(trainings);} )
     .catch(err => console.error(err));
   }
 
   const getCustomers = () => {
-      axios.get(`${url}/customers`)
+      axios.get(`${url}/api/customers`)
       .then(res => setCustomer(res.data.content))
       .catch(err => console.error(err));
   }
@@ -37,7 +39,7 @@ function App() {
         </Toolbar>
       </AppBar>
       {buttonIndex===1 && <Training getTrainings={getTrainings} trainings={trainings} />}
-      {buttonIndex===2 && <Customer getCustomers={getCustomers} getTrainings={getTrainings} customers={customers} trainings={trainings} />}
+      {buttonIndex===2 && <Customer getCustomers={getCustomers} customers={customers} url={url}/>}
     </div>
   );
 }

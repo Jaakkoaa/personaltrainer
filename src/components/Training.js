@@ -3,6 +3,7 @@ import {AgGridReact} from 'ag-grid-react';
 import { Button } from '@mui/material';
 import EditTraining from './edit/EditTraining';
 import AddTraining from './edit/AddTraining';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -28,11 +29,11 @@ export default function Training(props) {
         {field: 'date', sortable: true, filter: true, valueFormatter: params => dayjs(params.value).format('DD.MM.YYYY')},
         {field:'duration', sortable: true, filter: true},
         {cellRendererFramework: params => <EditTraining training={params.data} getTrainings={props.getTrainings}/> },
-        {cellRendererFramework: params => <Button onClick={() => deleteTraining(params.data)}>Delete</Button>}
+        {cellRendererFramework: params => <Button onClick={() => deleteTraining(params.data)} color="error"><DeleteIcon /></Button>}
     ]
 
     return(
-        <div className="ag-theme-alpine" style={{height:400,width:'55%', padding:50,margin:'auto' }}>
+        <div className="ag-theme-alpine" style={{height:400, padding:50,margin:'auto', width:'53%' }}>
         <AddTraining getTrainings={props.getTrainings}/>
             <AgGridReact
             rowData={props.trainings}

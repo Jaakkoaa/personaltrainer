@@ -2,6 +2,8 @@ import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Dialog } from "@mui/material";
 import { DialogContent } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+
 import axios from "axios";
 import React from "react";
 
@@ -31,7 +33,7 @@ const putTraining = () => {
 
 return(
     <>
-    <Button onClick={() => setOpen(true)}>Edit</Button>
+    <Button onClick={() => setOpen(true)}><EditIcon/></Button>
      <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogContent>
         <TextField

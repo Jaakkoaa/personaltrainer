@@ -25,6 +25,7 @@ export default function AddCustomer(props) {
     return(
         <>
             <TextField
+            style={{marginTop:10}}
             name="firstname"
             value={customer.firstname}
             onChange={inputChanged}
@@ -32,6 +33,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
               <TextField
+            style={{marginTop:10}}
             name="lastname"
             value={customer.lastname}
             onChange={inputChanged}
@@ -39,6 +41,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
               <TextField
+            style={{marginTop:10}}
             name="email"
             value={customer.email}
             onChange={inputChanged}
@@ -46,6 +49,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
             <TextField
+            style={{marginTop:10}}
             name="streetaddress"
             value={customer.streetaddress}
             onChange={inputChanged}
@@ -53,6 +57,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
             <TextField
+            style={{marginTop:10}}
             name="city"
             value={customer.city}
             onChange={inputChanged}
@@ -60,6 +65,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
             <TextField
+            style={{marginTop:10}}
             name="postcode"
             value={customer.postcode}
             onChange={inputChanged}
@@ -67,6 +73,7 @@ export default function AddCustomer(props) {
             fullWidth
           />
               <TextField
+            style={{marginTop:10}}
             name="phone"
             value={customer.phone}
             onChange={inputChanged}

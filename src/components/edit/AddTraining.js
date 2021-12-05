@@ -48,7 +48,6 @@ return(
         value={training.date}
         type="datetime-local"
         onChange={inputChanged}
-        label="date"
         fullWidth
       />
           <TextField
