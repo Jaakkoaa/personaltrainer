@@ -44,7 +44,7 @@ function App() {
       {buttonIndex===1 && <Training getTrainings={getTrainings} trainings={trainings} />}
       {buttonIndex===2 && <Customer getCustomers={getCustomers} customers={customers} url={url}/>}
       {buttonIndex===3 && <Calendar trainings={trainings} getTrainings={getTrainings}/>}
-      {buttonIndex===4 && <Statistics />}
+      {buttonIndex===4 && <Statistics trainings={trainings}/>}
     </div>
   );
 }

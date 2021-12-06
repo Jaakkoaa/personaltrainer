@@ -61,7 +61,7 @@ export default function Customer(props) {
       }
 
     return(
-
+        
         <div className="ag-theme-alpine" style={{height:600, padding:50,margin:'auto' }}>
             <div style={{textAlign:"left"}}>
             <Button variant="contained" onClick={() => setOpenAdd(true)} style={{}}>Add a Customer</Button>
