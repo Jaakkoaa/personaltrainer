@@ -8,9 +8,12 @@ import axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Button } from '@mui/material';
-import Statistics from './components/statistics/Statistics';
+import Statistics from './components/Statistics';
+import { Routes, Route, useNavigate} from "react-router-dom";
+
 function App() {
   
+  const navigate = useNavigate();
   const url = 'https://customerrest.herokuapp.com/';
   
   const [customers, setCustomer] = React.useState([]);
@@ -35,16 +38,19 @@ function App() {
     <div className="App">
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit" onClick={() => setButtonIndex(1)}> Training </Button>
-          <Button color="inherit" onClick={() => setButtonIndex(2)}> Customers </Button>
-          <Button color="inherit" onClick={() => setButtonIndex(3)}> Calendar </Button>
-          <Button color="inherit" onClick={() => setButtonIndex(4)}> Statistics </Button>
+          <Button color="inherit" onClick={() => navigate('/')}> Training </Button>
+          <Button color="inherit" onClick={() => navigate('/customers')}> Customers </Button>
+          <Button color="inherit" onClick={() => navigate('/calendar')}> Calendar </Button>
+          <Button color="inherit" onClick={() => navigate('/statistics')}> Statistics </Button>
         </Toolbar>
       </AppBar>
-      {buttonIndex===1 && <Training getTrainings={getTrainings} trainings={trainings} />}
-      {buttonIndex===2 && <Customer getCustomers={getCustomers} customers={customers} url={url}/>}
-      {buttonIndex===3 && <Calendar trainings={trainings} getTrainings={getTrainings}/>}
-      {buttonIndex===4 && <Statistics trainings={trainings}/>}
+      
+    <Routes>
+      <Route path="/" element={<Training getTrainings={getTrainings} trainings={trainings} />} />
+      <Route path="/customers" element={<Customer getCustomers={getCustomers} customers={customers} url={url}/>} />
+      <Route path="/calendar" element={<Calendar trainings={trainings} getTrainings={getTrainings}/>} />
+      <Route path="/statistics" element={ <Statistics trainings={trainings}/>}/>
+    </Routes>
     </div>
   );
 }
