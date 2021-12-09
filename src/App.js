@@ -9,16 +9,15 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Button } from '@mui/material';
 import Statistics from './components/Statistics';
-import { Routes, Route, useNavigate} from "react-router-dom";
+
 
 function App() {
   
-  const navigate = useNavigate();
   const url = 'https://customerrest.herokuapp.com/';
   
   const [customers, setCustomer] = React.useState([]);
   const [trainings, setTrainings] = React.useState([]);
-  const [buttonIndex, setButtonIndex] = React.useState(1);
+  const [appBarIndex, setAppBarIndex] = React.useState(0);
 
   const getTrainings = () => {
     axios.get(`${url}/api/trainings`)
@@ -38,19 +37,16 @@ function App() {
     <div className="App">
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit" onClick={() => navigate('/')}> Training </Button>
-          <Button color="inherit" onClick={() => navigate('/customers')}> Customers </Button>
-          <Button color="inherit" onClick={() => navigate('/calendar')}> Calendar </Button>
-          <Button color="inherit" onClick={() => navigate('/statistics')}> Statistics </Button>
+          <Button color="inherit" onClick={() => setAppBarIndex(0)}> Training </Button>
+          <Button color="inherit" onClick={() => setAppBarIndex(1)}> Customers </Button>
+          <Button color="inherit" onClick={() => setAppBarIndex(2)}> Calendar </Button>
+          <Button color="inherit" onClick={() => setAppBarIndex(3)}> Statistics </Button>
         </Toolbar>
       </AppBar>
-      
-    <Routes>
-      <Route path="/" element={<Training getTrainings={getTrainings} trainings={trainings} />} />
-      <Route path="/customers" element={<Customer getCustomers={getCustomers} customers={customers} url={url}/>} />
-      <Route path="/calendar" element={<Calendar trainings={trainings} getTrainings={getTrainings}/>} />
-      <Route path="/statistics" element={ <Statistics trainings={trainings}/>}/>
-    </Routes>
+    {appBarIndex === 0 &&<Training getTrainings={getTrainings} trainings={trainings} />} 
+    {appBarIndex === 1 &&<Customer getCustomers={getCustomers} customers={customers} url={url}/>}
+    {appBarIndex === 2 && <Calendar trainings={trainings} getTrainings={getTrainings}/>}
+    {appBarIndex === 3 && <Statistics trainings={trainings} getTrainings={getTrainings}/>}
     </div>
   );
 }

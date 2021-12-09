@@ -5,10 +5,7 @@ import _ from "lodash";
 
 export default function Statistics(props) {
 
-    const [data, setData] = React.useState(props.trainings);
-
-    React.useEffect(() => trainingsToData() ,[]);
-    React.useEffect(() => console.log(data) ,[data]);
+    const [data, setData] = React.useState();
 
     const trainingsToData = () => {
         const trainings = _.groupBy(props.trainings, 'activity')
@@ -17,7 +14,13 @@ export default function Statistics(props) {
             key: training,
             time: _.sumBy(trainings[training], 'duration')
         })))
+        console.log(data);
     }
+
+    React.useEffect(() => {
+        props.getTrainings();
+        console.log(props.trainings);},[]);
+    React.useEffect(() => trainingsToData(),[]);   
 
     return(
        <div> 

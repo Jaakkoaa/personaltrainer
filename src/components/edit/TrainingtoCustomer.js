@@ -30,7 +30,7 @@ export default function TrainingToCustomer(props) {
 
     const trainToCust = (training) => {
         console.log(props.currCustomer)
-        const puttable = {
+        const postable = {
             id: training.id,
             date: training.date,
             activity: training.activity,
@@ -39,7 +39,7 @@ export default function TrainingToCustomer(props) {
         }
 
         console.log(`${props.url}api/trainings`);
-        axios.post(`${props.url}api/trainings`, puttable)
+        axios.post(`${props.url}api/trainings`, postable)
         .then(res => {
             console.log(res.data)
             props.getTrainings();
