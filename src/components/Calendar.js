@@ -11,9 +11,8 @@ export default function Calendar(props) {
     const [events, setEvents] = React.useState([]);
 
     React.useEffect(() => {
-        props.getTrainings();
         trainingsToEvents();
-    },[]);
+    },[props]);
     React.useEffect(() => console.log(events),[events]);
 
 
