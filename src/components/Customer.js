@@ -24,8 +24,6 @@ export default function Customer(props) {
         gridRef.current.exportDataAsCsv({columnSeparator: ';', columnKeys: ['firstname', 'lastname', 'streetaddress', 'city', 'postcode', 'email', 'phone']});
       }
     
-
-    React.useEffect(() => console.log(props.customers, trainings),[props.customers, trainings]);
     React.useEffect(() => {
         props.getCustomers()
         getTrainings();},[]);

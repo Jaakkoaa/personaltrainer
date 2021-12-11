@@ -12,7 +12,7 @@ export default function Calendar(props) {
 
     React.useEffect(() => {
         trainingsToEvents();
-    },[props]);
+    },[]);
     React.useEffect(() => console.log(events),[events]);
 
 

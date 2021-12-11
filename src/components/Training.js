@@ -13,7 +13,6 @@ import dayjs from 'dayjs';
 
 export default function Training(props) {
 
-    React.useEffect(() => console.log(props.trainings),[props.trainings]);
     React.useEffect(() => props.getTrainings(),[]);   
 
     const deleteTraining = (training) => {
