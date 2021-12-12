@@ -12,23 +12,18 @@ import axios from 'axios';
 import TrainingToCustomer from './edit/TrainingtoCustomer';
 import DescriptionIcon from '@mui/icons-material/Description';
 
-
-
 export default function Customer(props) {
 
     const [openAdd, setOpenAdd] = React.useState(false);
-    const [trainings, setTrainings] = React.useState([]);
     const gridRef = useRef(null);
-
     const exportData = () => {
         gridRef.current.exportDataAsCsv({columnSeparator: ';', columnKeys: ['firstname', 'lastname', 'streetaddress', 'city', 'postcode', 'email', 'phone']});
       }
     
     React.useEffect(() => {
-        props.getCustomers()
-        getTrainings();},[]);
-
-    React.useEffect(() => console.log(trainings), [trainings]);
+            props.getCustomers()
+            props.getTrainingsWithCustomers();
+      },[]);
 
     const columns = [
         {field:'firstname', sortable: true, filter: true},
@@ -38,7 +33,7 @@ export default function Customer(props) {
         {field:'phone', sortable: true, filter: true},
         {field:'city', sortable: true, filter: true},
         {field:'postcode', sortable: true, filter: true},
-        {cellRendererFramework: params => <TrainingToCustomer currCustomer={params.data} url={props.url} trainings={trainings} getTrainings={getTrainings}/>},
+        {cellRendererFramework: params => <TrainingToCustomer currCustomer={params.data} url={props.url} trainings={props.trainings} getTrainings={props.getTrainingsWithCustomers}/>},
         {cellRendererFramework: params => <EditCustomer customer={params.data} getCustomers={props.getCustomers}/> },
         {cellRendererFramework: params => <Button onClick={() => deleteCustomer(params.data)} color="error"><DeleteIcon /></Button>}
     ]
@@ -51,12 +46,6 @@ export default function Customer(props) {
         .catch(err => console.error(err))
         : console.log('delete succesfull');
     }
-
-    const getTrainings = () => {
-        axios.get(`${props.url}gettrainings`)
-        .then(res => setTrainings(res.data))
-        .catch(err => console.error(err));
-      }
 
     return(
         

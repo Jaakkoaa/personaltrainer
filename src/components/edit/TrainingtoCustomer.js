@@ -59,6 +59,7 @@ export default function TrainingToCustomer(props) {
 
     const DialogOpened = () => {        
         console.log(props.currCustomer);
+        console.log(props.trainings);
         findOpenTrainings();
         !open ? setOpen(true) : setOpen(false); 
     }

@@ -18,6 +18,7 @@ function App() {
   const [customers, setCustomer] = React.useState([]);
   const [trainings, setTrainings] = React.useState([]);
   const [appBarIndex, setAppBarIndex] = React.useState(0);
+  const [trainingsWC, setTrainingsWC] = React.useState([]);
 
   const getTrainings = () => {
     axios.get(`${url}/api/trainings`)
@@ -33,6 +34,12 @@ function App() {
       .catch(err => console.error(err));
   }
 
+  const getTrainingsWithCustomers = () => {
+    axios.get(`${url}gettrainings`)
+    .then(res => setTrainingsWC(res.data))
+    .catch(err => console.error(err));
+  }
+
   return (
     <div className="App">
       <AppBar position="static">
@@ -44,7 +51,7 @@ function App() {
         </Toolbar>
       </AppBar>
     {appBarIndex === 0 &&<Training getTrainings={getTrainings} trainings={trainings} />} 
-    {appBarIndex === 1 &&<Customer getCustomers={getCustomers} customers={customers} url={url}/>}
+    {appBarIndex === 1 &&<Customer getCustomers={getCustomers} customers={customers} url={url} getTrainingsWithCustomers={getTrainingsWithCustomers} trainings={trainingsWC}/>}
     {appBarIndex === 2 && <Calendar trainings={trainings} getTrainings={getTrainings}/>}
     {appBarIndex === 3 && <Statistics trainings={trainings} getTrainings={getTrainings}/>}
     </div>
