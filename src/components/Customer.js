@@ -28,6 +28,8 @@ export default function Customer(props) {
         props.getCustomers()
         getTrainings();},[]);
 
+    React.useEffect(() => console.log(trainings), [trainings]);
+
     const columns = [
         {field:'firstname', sortable: true, filter: true},
         {field:'lastname', sortable: true, filter: true},
@@ -52,9 +54,7 @@ export default function Customer(props) {
 
     const getTrainings = () => {
         axios.get(`${props.url}gettrainings`)
-        .then(res =>{
-          setTrainings(res.data);
-          console.log(trainings);} )
+        .then(res => setTrainings(res.data))
         .catch(err => console.error(err));
       }
 
